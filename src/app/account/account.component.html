@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-card>
+      <ion-card-header>
+        <img src="assets/{{photo}}" alt="Avatar">
+        <ion-card-title>{{name}}</ion-card-title>
+        <ion-card-subtitle>Perfil del estudiante</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <b>Número de control:</b> {{controlnumber}}<br>
+        <b>CURP:</b> {{curp}}<br>
+        <b>Edad:</b> {{age}}<br>
+        <b>NIP:</b> {{nip}}<br>
+        <b>Correo electrónico: </b>{{email}}<br>
+        <b>Carrera:</b> {{career}}
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+</ion-content>

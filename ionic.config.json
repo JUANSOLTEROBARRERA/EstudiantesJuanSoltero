@@ -1,0 +1,7 @@
+{
+  "name": "eje31octubre",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

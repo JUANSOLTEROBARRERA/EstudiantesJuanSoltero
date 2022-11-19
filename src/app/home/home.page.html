@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Estudiantes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <div *ngFor="let item of students; let i = index">
+          <div *ngIf="item.controlnumber!='admin'">
+            <ion-item-sliding>
+              <!-- <ion-item href="/account/{{i}}" (click)="obtainStudent(i)"> -->
+              <ion-item>
+                <ion-label (click)="getStudentByControlNumber(item.controlnumber)">
+                  {{item.name}}
+                </ion-label>
+
+              </ion-item>
+
+              <ion-item-options side="end" (ionSwipe)="removeStudent(i)">
+                <ion-item-option expandable color="danger">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </div>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-fab (click)="addStudent()" (click)="changeAction1()" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab id="open-custom-dialog" expand="block" slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button>
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+
+
+
+<ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+
+  <div>
+    <ng-template>
+      <div *ngIf="open" class="wrapper">
+        <h1 style="text-align: center;">Buscar Estudiante</h1>
+
+        <div style="margin: 10%">
+
+          <ion-item *ngIf="!currentStudent">
+            <ion-label position="floating">Número de control</ion-label>
+            <ion-input (keyup.enter)="editStudent()" #editnc [(ngModel)]="findcn" placeholder="Número de control">
+            </ion-input>
+          </ion-item>
+
+
+
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label>Número de control:&nbsp;&nbsp;</ion-label>
+            <ion-input disabled #editnc>{{findcn}}</ion-input>
+          </ion-item>
+
+
+
+          <ion-button *ngIf="!currentStudent" (click)="editStudent()" style="margin-top: 15px; text-align: center;"
+            shape="round">Buscar</ion-button>
+
+
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">Nombre: </ion-label>
+            <ion-input readonly [(ngModel)]="editname"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">CURP: </ion-label>
+            <ion-input readonly [(ngModel)]="editcurp"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">Edad: </ion-label>
+            <ion-input readonly [(ngModel)]="editage"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">NIP: </ion-label>
+            <ion-input readonly [(ngModel)]="editnip"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">Email: </ion-label>
+            <ion-input readonly [(ngModel)]="editemail"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">Carrera: </ion-label>
+            <ion-input readonly [(ngModel)]="editcareer"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="currentStudent">
+            <ion-label position="floating">Foto: </ion-label>
+            <ion-input readonly [(ngModel)]="editphoto"></ion-input>
+          </ion-item>
+
+
+          <ion-button (click)="changevariables(findcn)" *ngIf="currentStudent" style="margin-top: 15px;" shape="round">
+            Editar</ion-button>
+
+          <div style="float: right; margin-top: 15px;">
+            <ion-button color="warning" *ngIf="currentStudent" (click)="clean()" shape="round">LIMPIAR</ion-button>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div *ngIf="!open">
+        <h1 style="text-align: center;">EXITO</h1>
+      </div>
+    </ng-template>
+  </div>
+</ion-modal>
